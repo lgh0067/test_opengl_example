@@ -4,7 +4,8 @@
       "cwd": "${workspaceFolder}"
     },
     "files.associations": {
-        "vector": "cpp"
+      "vector": "cpp",
+      "memory": "cpp"
     },
     "git.ignoreLimitWarning": true
   }
