@@ -83,31 +83,54 @@ private:
     glm::vec3 m_cameraFront { glm::vec3(0.0f, 0.0f, -1.0f) };
     glm::vec3 m_cameraUp { glm::vec3(0.0f, 1.0f, 0.0f) };
     	
-  // framebuffer
-  FramebufferUPtr m_framebuffer;
+    // framebuffer
+    FramebufferUPtr m_framebuffer;
 
-  // cubemap
-  CubeTextureUPtr m_cubeTexture;
-  ProgramUPtr m_skyboxProgram;
-  ProgramUPtr m_envMapProgram;
+    // cubemap
+    CubeTextureUPtr m_cubeTexture;
+    ProgramUPtr m_skyboxProgram;
+    ProgramUPtr m_envMapProgram;
 
-  TexturePtr m_grassTexture;
-  ProgramUPtr m_grassProgram;
-  std::vector<glm::vec3> m_grassPos;
-  BufferUPtr m_grassPosBuffer;
-  VertexLayoutUPtr m_grassInstance;
+    TexturePtr m_grassTexture;
+    ProgramUPtr m_grassProgram;
+    std::vector<glm::vec3> m_grassPos;
+    BufferUPtr m_grassPosBuffer;
+    VertexLayoutUPtr m_grassInstance;
 
-    // shadow map
-  ShadowMapUPtr m_shadowMap;
-  ProgramUPtr m_lightingShadowProgram;
-  
-    // normal map
-  TextureUPtr m_brickDiffuseTexture;
-  TextureUPtr m_brickNormalTexture;
-  ProgramUPtr m_normalProgram;
+      // shadow map
+    ShadowMapUPtr m_shadowMap;
+    ProgramUPtr m_lightingShadowProgram;
+    
+      // normal map
+    TextureUPtr m_brickDiffuseTexture;
+    TextureUPtr m_brickNormalTexture;
+    ProgramUPtr m_normalProgram;
 
-    int m_width {WINDOW_WIDTH};
-    int m_height {WINDOW_HEIGHT};
+      int m_width {WINDOW_WIDTH};
+      int m_height {WINDOW_HEIGHT};
+
+    // deferred shading
+    FramebufferUPtr m_deferGeoFramebuffer;
+    ProgramUPtr m_deferGeoProgram;
+    ProgramUPtr m_deferLightProgram;
+
+    struct DeferLight {
+      glm::vec3 position;
+      glm::vec3 color;
+    };
+    std::vector<DeferLight> m_deferLights;
+
+    // ssao
+    FramebufferUPtr m_ssaoFramebuffer;
+    ProgramUPtr m_ssaoProgram;
+    ModelUPtr m_model;  // for test rendering
+    TextureUPtr m_ssaoNoiseTexture;
+    std::vector<glm::vec3> m_ssaoSamples;
+    float m_ssaoRadius { 1.0f };
+    	
+    ProgramUPtr m_blurProgram;
+    FramebufferUPtr m_ssaoBlurFramebuffer;
+    bool m_useSsao { true };
 
 };
 
